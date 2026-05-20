@@ -63,6 +63,8 @@ def _wrap_with_breaks(theta, theta_dot):
     """Wrap theta into [-pi, pi] and insert NaN at wrap jumps so phase
     portraits of rotating trajectories do not draw a horizontal line across
     the figure at each ±pi crossing."""
+    # Matplotlib treats NaN as "lift the pen here" and doesn't draw a line segment through it.
+    # Only applied for full rotations where the jump is > pi; small jumps across the -pi/pi boundary are left unbroken so that small oscillations look continuous.
     wrapped = np.array([remap_angle(t) for t in theta])
     th_out, td_out = [wrapped[0]], [theta_dot[0]]
     for i in range(1, len(wrapped)):
