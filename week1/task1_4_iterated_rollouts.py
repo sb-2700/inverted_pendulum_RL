@@ -143,12 +143,17 @@ def rollout_model(initial_state, C, n_steps, remap=True):
 # Plotting helpers
 # ---------------------------------------------------------------------------
 def plot_compare_2x2(time, true_traj, model_traj, title, fname,
-                     extra_traj=None, extra_label=None):
+                     extra_traj=None, extra_label=None, yscale="linear"):
     """2x2 grid: one state component per panel, true vs model vs time.
 
     ``true_traj`` and ``model_traj`` are (T, 4) arrays.  An optional
     ``extra_traj`` is overlaid as a third curve (used to show the
     un-remapped model on the full-rotation rollout).
+
+    ``yscale`` is either ``"linear"`` (default) or ``"symlog"``.  Symlog is
+    used only for the no-remap diagnostic, where the un-remapped trajectory
+    explodes by tens of orders of magnitude and would otherwise crush the
+    well-behaved curves to a flat line.
     """
     fig, axes = plt.subplots(2, 2, figsize=(12, 8), layout="constrained")
     for j, ax in enumerate(axes.flat):
@@ -162,6 +167,11 @@ def plot_compare_2x2(time, true_traj, model_traj, title, fname,
         ax.set_xlabel("time (s)")
         ax.set_ylabel(STATE_LABELS[j])
         ax.grid(alpha=0.3)
+        if yscale == "symlog":
+            # linthresh=1.0 keeps the [-1, 1] band linear so the small,
+            # well-behaved oscillations of the true / remapped trajectories
+            # remain readable on the same axes as the blow-up curve.
+            ax.set_yscale("symlog", linthresh=1.0)
         if j == 0:
             ax.legend(loc="best")
     fig.suptitle(title)
@@ -217,6 +227,15 @@ def main():
         print(f"  {STATE_SHORT[j]:<8s}{row}")
     print()
 
+    # Stability of the iterated linear map X_{n+1} = (I + C) X_n is set by
+    # the spectrum of (I + C): |lambda| > 1 in any direction means the
+    # un-remapped rollout grows without bound along that mode.
+    eigvals = np.linalg.eigvals(np.eye(4) + C)
+    print("Eigenvalues of (I + C):")
+    for e in eigvals:
+        print(f"  {e}  |lambda| = {abs(e):.4f}")
+    print()
+
     # Persist the fitted C so later tasks can load the same model.
     c_path = FIG_DIR / "task1_4_C.npy"
     np.save(c_path, C)
@@ -247,8 +266,10 @@ def main():
         "full_rotation": {
             # Enough angular velocity to send the pole over the top --
             # this is the case that exposes the periodicity issue.
-            "state": np.array([0.0, 0.0, np.pi, 12.0]),
-            "title": "(c) Full 360-degree rotation",
+            # Task 1.1 placed the separatrix at |theta_dot| ~ 13 rad/s, so
+            # 15 rad/s is comfortably past it and gives clean rotation.
+            "state": np.array([0.0, 0.0, np.pi, 15.0]),
+            "title": "(c) Full 360-degree rotation (theta_dot_0 = 15 rad/s)",
             "fname": "task1_4_rollout_c_rotation.png",
         },
     }
@@ -262,6 +283,14 @@ def main():
         print(f"  - {key:<18s}  init = [{_fmt_state(s0)}]")
         true_traj  = rollout_true(s0,  N_STEPS)
         model_traj = rollout_model(s0, C, N_STEPS, remap=True)
+        if key == "full_rotation":
+            # Sanity-check that the chosen theta_dot is actually past the
+            # separatrix.  The simulator does not remap theta internally,
+            # so the un-wrapped net change in theta directly counts turns.
+            net_dtheta = true_traj[-1, 2] - true_traj[0, 2]
+            n_rotations = abs(net_dtheta) / (2 * np.pi)
+            print(f"    net delta theta over rollout = {net_dtheta:+.2f} rad "
+                  f"({n_rotations:.1f} rotations)")
         plot_compare_2x2(
             time, true_traj, model_traj,
             title=f"Task 1.4  --  {cfg['title']}\ninitial state: {_fmt_state(s0)}",
@@ -279,10 +308,11 @@ def main():
     plot_compare_2x2(
         time, true_traj, model_remapped,
         title=("Task 1.4  --  full-rotation rollout: with vs without angle remap\n"
-               f"initial state: {_fmt_state(s0)}"),
+               f"initial state: {_fmt_state(s0)}  (symlog y-axis)"),
         fname="task1_4_rollout_c_no_remap_diagnostic.png",
         extra_traj=model_no_remap,
         extra_label="linear model (NO remap)",
+        yscale="symlog",
     )
 
     # Print summary numbers for the report.
