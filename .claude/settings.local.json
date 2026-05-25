@@ -4,7 +4,8 @@
       "Bash(python -c \"from cartpole import CartPole, _remap_angle; print\\('ok'\\); print\\(_remap_angle\\(3.5\\)\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\('week2/task2_1.py'\\).read\\(\\)\\); print\\('syntax ok'\\)\")",
       "Bash(python week2/task2_1.py)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Bash(findstr task2 *)"
     ]
   }
 }

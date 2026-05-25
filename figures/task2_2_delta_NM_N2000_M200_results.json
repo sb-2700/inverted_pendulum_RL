@@ -1,0 +1,238 @@
+{
+  "tag": "delta_NM_N2000_M200",
+  "cfg": {
+    "target": "delta",
+    "form": "NM",
+    "N_train": 2000,
+    "N_val": 500,
+    "M": 200,
+    "lambda_init": 0.0001,
+    "log_lambda_bounds": [
+      -18.0,
+      -2.0
+    ],
+    "log_sigma_bounds": [
+      -6.0,
+      5.0
+    ],
+    "maxiter": 200,
+    "ftol": 1e-10,
+    "gtol": 1e-08,
+    "seed": 0,
+    "refit": false,
+    "rollout_steps": 200,
+    "dt": 0.1,
+    "horizon_threshold": 0.5
+  },
+  "log_hp_init": [
+    -9.210340371976182,
+    1.0695242484021006,
+    1.747955660339232,
+    -0.09206017012699648,
+    2.160171725723638
+  ],
+  "t21_lambda": 3.1622776601683795e-05,
+  "opt_results": [
+    {
+      "dim": 0,
+      "dim_name": "x",
+      "log_hp_init": [
+        -9.210340371976182,
+        1.0695242484021006,
+        1.747955660339232,
+        -0.09206017012699648,
+        2.160171725723638
+      ],
+      "log_hp_opt": [
+        -9.848513388873302,
+        3.224889095742095,
+        3.6409819039169817,
+        0.10367346935019332,
+        3.376617055356616
+      ],
+      "val_mse_init": 0.000541147328745681,
+      "val_mse_opt": 2.5219014775540406e-06,
+      "iters": 19,
+      "n_evals": 60,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "elapsed_s": 1.4689850807189941
+    },
+    {
+      "dim": 1,
+      "dim_name": "xdot",
+      "log_hp_init": [
+        -9.210340371976182,
+        1.0695242484021006,
+        1.747955660339232,
+        -0.09206017012699648,
+        2.160171725723638
+      ],
+      "log_hp_opt": [
+        -9.869632874211579,
+        5.0,
+        5.0,
+        -1.0191243232608154,
+        2.104199691732303
+      ],
+      "val_mse_init": 0.033828429848546664,
+      "val_mse_opt": 4.12515802928384e-05,
+      "iters": 24,
+      "n_evals": 55,
+      "success": false,
+      "message": "ABNORMAL: ",
+      "elapsed_s": 1.3704133033752441
+    },
+    {
+      "dim": 2,
+      "dim_name": "theta",
+      "log_hp_init": [
+        -9.210340371976182,
+        1.0695242484021006,
+        1.747955660339232,
+        -0.09206017012699648,
+        2.160171725723638
+      ],
+      "log_hp_opt": [
+        -13.723630102050741,
+        5.0,
+        5.0,
+        -0.976562147206357,
+        2.274978521152791
+      ],
+      "val_mse_init": 0.0022974679033842607,
+      "val_mse_opt": 6.892656190151658e-07,
+      "iters": 35,
+      "n_evals": 83,
+      "success": false,
+      "message": "ABNORMAL: ",
+      "elapsed_s": 2.0024397373199463
+    },
+    {
+      "dim": 3,
+      "dim_name": "thetadot",
+      "log_hp_init": [
+        -9.210340371976182,
+        1.0695242484021006,
+        1.747955660339232,
+        -0.09206017012699648,
+        2.160171725723638
+      ],
+      "log_hp_opt": [
+        -9.595860952703394,
+        5.0,
+        5.0,
+        -1.3567307197282559,
+        1.8407203417860893
+      ],
+      "val_mse_init": 0.4303590000003761,
+      "val_mse_opt": 0.0003762292179337643,
+      "iters": 30,
+      "n_evals": 41,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "elapsed_s": 0.9416639804840088
+    }
+  ],
+  "val_mse_summary": {
+    "init": {
+      "val_mse_total": 0.11675651126934161,
+      "val_mse_per_dim": [
+        0.0005411473287547518,
+        0.03382842984838986,
+        0.0022974679033960703,
+        0.43035899999682575
+      ]
+    },
+    "t2.1": {
+      "val_mse_total": 0.11676297706794937,
+      "val_mse_per_dim": [
+        0.0005411583849132716,
+        0.033828347191826695,
+        0.0022977305396553066,
+        0.4303846721554022
+      ]
+    },
+    "opt": {
+      "val_mse_total": 0.0001064745112237819,
+      "val_mse_per_dim": [
+        4.174016335435866e-06,
+        4.391183162593717e-05,
+        1.5830359070980157e-06,
+        0.0003762291610266566
+      ]
+    }
+  },
+  "rollout_horizon": {
+    "t2.1": [
+      {
+        "IC": "IC1: pole down, still",
+        "T_break_s": null,
+        "period_s": null,
+        "cycles_at_break": null
+      },
+      {
+        "IC": "IC2: small swing from down",
+        "T_break_s": null,
+        "period_s": 0.9571428571428572,
+        "cycles_at_break": null
+      },
+      {
+        "IC": "IC3: mid-swing + cart drift",
+        "T_break_s": 0.4,
+        "period_s": 1.5461538461538462,
+        "cycles_at_break": 0.25870646766169153
+      },
+      {
+        "IC": "IC4: near upright + rapid spin",
+        "T_break_s": 0.4,
+        "period_s": 1.435714285714286,
+        "cycles_at_break": 0.2786069651741293
+      },
+      {
+        "IC": "IC5: off-centre, downswing",
+        "T_break_s": 1.4000000000000001,
+        "period_s": 1.1823529411764706,
+        "cycles_at_break": 1.18407960199005
+      }
+    ],
+    "opt": [
+      {
+        "IC": "IC1: pole down, still",
+        "T_break_s": 11.100000000000001,
+        "period_s": null,
+        "cycles_at_break": null
+      },
+      {
+        "IC": "IC2: small swing from down",
+        "T_break_s": null,
+        "period_s": 0.9571428571428572,
+        "cycles_at_break": null
+      },
+      {
+        "IC": "IC3: mid-swing + cart drift",
+        "T_break_s": 10.700000000000001,
+        "period_s": 1.5461538461538462,
+        "cycles_at_break": 6.920398009950249
+      },
+      {
+        "IC": "IC4: near upright + rapid spin",
+        "T_break_s": 2.4000000000000004,
+        "period_s": 1.435714285714286,
+        "cycles_at_break": 1.671641791044776
+      },
+      {
+        "IC": "IC5: off-centre, downswing",
+        "T_break_s": 10.200000000000001,
+        "period_s": 1.1823529411764706,
+        "cycles_at_break": 8.626865671641792
+      }
+    ]
+  },
+  "sigmas_state": [
+    2.9139928334019736,
+    5.7428503305092855,
+    1.8241005394269758,
+    8.672626843714667
+  ]
+}
