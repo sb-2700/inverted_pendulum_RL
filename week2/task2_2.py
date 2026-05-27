@@ -85,6 +85,8 @@ CFG = {
     "maxiter":           200,
     "ftol":              1e-10,
     "gtol":              1e-8,
+    "n_restarts":        5,        # extra starts beyond the canonical init
+    "restart_pert_std":  1.0,      # std-dev of N(0, sigma^2) perturbation in log-space
 
     # --- data / misc ---
     "seed":              0,
@@ -365,10 +367,16 @@ def run_optimisation(data, lin_C):
     log_lo,  log_hi  = CFG["log_lambda_bounds"]
     log_slo, log_shi = CFG["log_sigma_bounds"]
     bounds = [(log_lo, log_hi)] + [(log_slo, log_shi)] * 4
+    bounds_lo = np.array([b[0] for b in bounds])
+    bounds_hi = np.array([b[1] for b in bounds])
 
     X_tr_j    = jnp.asarray(X_tr)
     X_va_j    = jnp.asarray(X_va)
     X_basis_j = jnp.asarray(X_basis)
+
+    n_restarts = int(CFG["n_restarts"])
+    pert_std   = float(CFG["restart_pert_std"])
+    n_total    = 1 + n_restarts
 
     results = []
     for j in range(4):
@@ -398,9 +406,32 @@ def run_optimisation(data, lin_C):
                       f"Reduce CFG['M'] and re-run.")
                 sys.exit(1)
 
+        # ---- Multi-start: canonical init + n_restarts perturbed inits ----
+        rng_j = np.random.default_rng(CFG["seed"] + 100 + j)
+        inits = [np.asarray(log_hp_init, dtype=np.float64)]
+        for _r in range(n_restarts):
+            pert  = rng_j.normal(0.0, pert_std, size=5)
+            start = np.clip(log_hp_init + pert, bounds_lo, bounds_hi)
+            inits.append(start)
+
         t0 = time.time()
-        res, trace = optimise_one_dim(vg, log_hp_init, bounds)
+        runs = []   # list of dicts: {loss, res, trace, start}
+        for k, start in enumerate(inits):
+            res_k, trace_k = optimise_one_dim(vg, start, bounds)
+            runs.append({
+                "loss":  float(res_k.fun),
+                "res":   res_k,
+                "trace": trace_k,
+                "start": np.asarray(start, dtype=np.float64),
+            })
         dt = time.time() - t0
+
+        # Pick the lowest-loss run as canonical
+        best_idx = int(np.argmin([rk["loss"] for rk in runs]))
+        best     = runs[best_idx]
+        res      = best["res"]
+        trace    = best["trace"]
+
         # Re-evaluate at the returned optimum to get a clean final grad norm.
         _, g_final = vg(jnp.asarray(res.x))
         g_norm = float(jnp.linalg.norm(g_final))
@@ -410,20 +441,62 @@ def run_optimisation(data, lin_C):
         print(f"                     log_hp_opt: lam={res.x[0]:.3f}  "
               f"sig=[{res.x[1]:.3f}, {res.x[2]:.3f}, {res.x[3]:.3f}, {res.x[4]:.3f}]")
 
+        # ---- Multi-start diagnostics ----
+        # Sort runs by ascending final loss for storage.
+        order = np.argsort([rk["loss"] for rk in runs])
+        restart_losses   = [float(runs[i]["loss"]) for i in order]
+        restart_log_hps  = [runs[i]["res"].x.tolist() for i in order]
+        restart_traces   = [runs[i]["trace"] for i in order]
+        restart_starts   = [runs[i]["start"].tolist() for i in order]
+        best_rank        = int(np.where(order == best_idx)[0][0])  # always 0
+
+        loss_arr = np.asarray(restart_losses, dtype=np.float64)
+        lmin = float(loss_arr.min())
+        lmax = float(loss_arr.max())
+        rel_spread_pct = float((lmax - lmin) / max(lmin, 1e-30) * 100.0)
+        std_over_min   = float(np.std(loss_arr) / max(lmin, 1e-30))
+        log_hp_std     = np.std(np.stack([np.asarray(v) for v in restart_log_hps],
+                                          axis=0), axis=0)
+
+        name_chunk = f"({DIM_NAMES[j]}):"
+        print(f"[multi-start] dim {j} {name_chunk:<12s}"
+              f"{n_total} runs, loss min={lmin:.2e} max={lmax:.2e} "
+              f"(rel-spread={rel_spread_pct:.1f}%, std/min={std_over_min:.3f})")
+
         results.append({
-            "dim":            j,
-            "dim_name":       DIM_NAMES[j],
-            "log_hp_init":    log_hp_init.tolist(),
-            "log_hp_opt":     res.x.tolist(),
-            "val_mse_init":   v0,
-            "val_mse_opt":    float(res.fun),
-            "iters":          int(res.nit),
-            "n_evals":        len(trace),
-            "success":        bool(res.success),
-            "message":        str(res.message),
-            "trace":          trace,
-            "elapsed_s":      dt,
+            "dim":              j,
+            "dim_name":         DIM_NAMES[j],
+            "log_hp_init":      log_hp_init.tolist(),
+            "log_hp_opt":       res.x.tolist(),
+            "val_mse_init":     v0,
+            "val_mse_opt":      float(res.fun),
+            "iters":            int(res.nit),
+            "n_evals":          len(trace),
+            "success":          bool(res.success),
+            "message":          str(res.message),
+            "trace":            trace,
+            "elapsed_s":        dt,
+            # multi-start additions
+            "restart_losses":   restart_losses,
+            "restart_log_hps":  restart_log_hps,
+            "restart_traces":   restart_traces,
+            "restart_starts":   restart_starts,
+            "best_rank":        best_rank,
+            "n_restarts":       n_restarts,
+            "rel_spread_pct":   rel_spread_pct,
+            "std_over_min":     std_over_min,
+            "log_hp_std":       log_hp_std.tolist(),
         })
+
+    # ---- Consolidated multi-start diagnostic ----
+    print("\n=== Multi-start diagnostic ===")
+    for r in results:
+        hp_std_str = "[" + ", ".join(f"{s:.3f}" for s in r["log_hp_std"]) + "]"
+        name_chunk = f"({r['dim_name']}):"
+        print(f"  dim {r['dim']} {name_chunk:<12s}"
+              f"loss={r['val_mse_opt']:.2e}   "
+              f"rel-spread={r['rel_spread_pct']:.1f}%   "
+              f"log_hp std={hp_std_str}")
 
     return results, log_hp_init.tolist()
 
@@ -597,13 +670,24 @@ def plot_optim_traces(opt_results, savepath):
     fig, axes = plt.subplots(2, 2, figsize=(11, 8), sharex=False)
     for j, r in enumerate(opt_results):
         ax = axes[j // 2, j % 2]
+        # Overlay all restart traces in semi-transparent grey (if present).
+        restart_traces = r.get("restart_traces", None)
+        n_runs = 1 + int(r.get("n_restarts", 0))
+        if restart_traces:
+            for tr in restart_traces:
+                ax.semilogy(tr, "-", lw=0.9, color="0.7", alpha=0.45)
+        # Best (chosen) trace in red on top.
         ax.semilogy(r["trace"], "-", lw=1.5, color="C3")
         ax.axhline(r["val_mse_init"], color="gray", ls="--", lw=1,
                    label=f"init={r['val_mse_init']:.2e}")
         ax.axhline(r["val_mse_opt"], color="C3", ls=":", lw=1,
                    label=f"opt={r['val_mse_opt']:.2e}")
-        ax.set_title(f"dim {j}: {DELTA_LABELS[j]}   "
-                     f"({r['iters']} iters, {r['n_evals']} evals)")
+        title = (f"dim {j}: {DELTA_LABELS[j]}   "
+                 f"({r['iters']} iters, {r['n_evals']} evals")
+        if restart_traces:
+            title += f", best of {n_runs}"
+        title += ")"
+        ax.set_title(title)
         ax.set_xlabel("L-BFGS-B function eval index")
         ax.set_ylabel("val MSE")
         ax.legend(fontsize=8)
@@ -1104,17 +1188,40 @@ def main():
     # -----------------------------------------------------------------
     # results.json
     # -----------------------------------------------------------------
+    # Drop bulky traces from opt_results in the json output, but keep the
+    # scalar multi-start diagnostics (rel_spread_pct, std_over_min, log_hp_std,
+    # restart_losses, restart_log_hps). restart_traces and restart_starts are
+    # bulky and not needed downstream of the run, so drop them too.
+    _DROP = {"trace", "restart_traces", "restart_starts"}
+    opt_results_json = [
+        {k: v for k, v in r.items() if k not in _DROP}
+        for r in opt_results
+    ]
+
+    multi_start_diagnostic = [
+        {
+            "dim":               r["dim"],
+            "dim_name":          r["dim_name"],
+            "n_runs":            1 + int(r["n_restarts"]),
+            "restart_losses":    r["restart_losses"],
+            "rel_spread_pct":    r["rel_spread_pct"],
+            "std_over_min":      r["std_over_min"],
+            "log_hp_std":        r["log_hp_std"],
+        }
+        for r in opt_results
+    ]
+
     out = {
-        "tag":             tag(),
-        "cfg":             {k: (v.tolist() if isinstance(v, np.ndarray) else v)
-                            for k, v in CFG.items()},
-        "log_hp_init":     log_hp_init,
-        "t21_lambda":      t21_lambda,
-        "opt_results":     [{k: v for k, v in r.items() if k != "trace"}
-                            for r in opt_results],   # drop bulky traces
-        "val_mse_summary": summary,
-        "rollout_horizon": horizon,
-        "sigmas_state":    sigmas_state.tolist(),
+        "tag":                     tag(),
+        "cfg":                     {k: (v.tolist() if isinstance(v, np.ndarray) else v)
+                                    for k, v in CFG.items()},
+        "log_hp_init":             log_hp_init,
+        "t21_lambda":              t21_lambda,
+        "opt_results":             opt_results_json,
+        "val_mse_summary":         summary,
+        "rollout_horizon":         horizon,
+        "sigmas_state":            sigmas_state.tolist(),
+        "multi_start_diagnostic":  multi_start_diagnostic,
     }
     with open(results_path(), "w") as f:
         json.dump(out, f, indent=2)

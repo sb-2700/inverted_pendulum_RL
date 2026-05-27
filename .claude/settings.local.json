@@ -5,7 +5,9 @@
       "Bash(python -c \"import ast; ast.parse\\(open\\('week2/task2_1.py'\\).read\\(\\)\\); print\\('syntax ok'\\)\")",
       "Bash(python week2/task2_1.py)",
       "Bash(python *)",
-      "Bash(findstr task2 *)"
+      "Bash(findstr task2 *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Github\\\\inverted_pendulum_RL\" -Recurse -File -Name)",
+      "Bash(Sort-Object)"
     ]
   }
 }
