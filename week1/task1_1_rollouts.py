@@ -260,8 +260,8 @@ SHORT_N_STEPS = 35     # ~3.5 s — ~3 small-oscillation periods, a few rotation
 
 # Initial θ̇ values sampled for the global phase portrait.  Coverage spans the
 # small libration regime up through clear rotation, with both signs.
-GLOBAL_LIB_THETADOTS = [-10.0, -7.0, -4.0, -1.0, 1.0, 4.0, 7.0, 10.0]
-GLOBAL_ROT_THETADOTS = [-16.0, -14.0, 14.0, 16.0]
+GLOBAL_LIB_THETADOTS = [-13.0, -10.0, -7.0, -4.0, -1.0, 1.0, 4.0, 7.0, 10.0, 13.0]
+GLOBAL_ROT_THETADOTS = [-16.0, -14.0, -13.9, 13.9, 14.0, 16.0]
 
 
 def plot_phase_global(fname,

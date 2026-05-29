@@ -1,5 +1,5 @@
 {
-  "elapsed_total_s": 6.565310478210449,
+  "elapsed_total_s": 6.2251482009887695,
   "init_source": "t2.2 (task2_2_delta_NM_N2000_M200_hyperparams.json)",
   "linear": {
     "train_mse_per_dim": [
@@ -109,5 +109,54 @@
     5.74285033050929,
     1.824100539426975,
     8.672626843714667
-  ]
+  ],
+  "rollout_horizon_comparison": {
+    "n_steps": 200,
+    "threshold": 0.5,
+    "t21_lambda": 3.1622776601683795e-05,
+    "per_model": {
+      "t2.1": [
+        {
+          "IC": "near upright + rapid spin",
+          "T_break_s": 0.4,
+          "period_s": 1.435714285714286,
+          "cycles_at_break": 0.2786069651741293
+        },
+        {
+          "IC": "off-centre, downswing",
+          "T_break_s": 1.4000000000000001,
+          "period_s": 1.1823529411764706,
+          "cycles_at_break": 1.18407960199005
+        }
+      ],
+      "t2.2-opt": [
+        {
+          "IC": "near upright + rapid spin",
+          "T_break_s": 2.5,
+          "period_s": 1.435714285714286,
+          "cycles_at_break": 1.741293532338308
+        },
+        {
+          "IC": "off-centre, downswing",
+          "T_break_s": 10.200000000000001,
+          "period_s": 1.1823529411764706,
+          "cycles_at_break": 8.626865671641792
+        }
+      ],
+      "t2.3": [
+        {
+          "IC": "near upright + rapid spin",
+          "T_break_s": 7.300000000000001,
+          "period_s": 1.435714285714286,
+          "cycles_at_break": 5.08457711442786
+        },
+        {
+          "IC": "off-centre, downswing",
+          "T_break_s": 9.600000000000001,
+          "period_s": 1.1823529411764706,
+          "cycles_at_break": 8.119402985074627
+        }
+      ]
+    }
+  }
 }

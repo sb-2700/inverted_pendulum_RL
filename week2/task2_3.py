@@ -46,6 +46,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "week2"))
 from cartpole import CartPole, _remap_angle                          # noqa: E402
 from task2_1 import _angle_wrap, _estimate_period                    # noqa: E402
+import task2_2 as t22                                                # noqa: E402
 
 
 # =========================================================================
@@ -476,6 +477,32 @@ def rollout_horizon(model: KernelEnsemble, X0, sigmas_state, n_steps, dt,
 
 
 # =========================================================================
+# 6b. RECONSTRUCT TASK 2.2 MODELS (for the rollout-horizon overlay)
+# =========================================================================
+def build_t22_models():
+    """Rebuild Task 2.2's 't2.1' and optimised ('opt') KernelEnsembles so their
+    iterated rollouts can be overlaid against the Task 2.3 sin/cos model.
+
+    Returns (t21_model, t22_opt_model, t21_lambda); any may be None if the
+    Task 2.2 hyperparameter cache (or the Task 2.1 lambda) is unavailable.
+
+    The returned objects are task2_2.KernelEnsemble instances and MUST be rolled
+    out with task2_2.model_rollout (which remaps theta in-loop) -- unlike the
+    Task 2.3 model, whose sin/cos features absorb periodicity without remap."""
+    hp_path = t22.hp_cache_path()
+    if not hp_path.exists():
+        print(f"[t2.2] {hp_path.name} not found -- skipping t2.1/t2.2 overlay")
+        return None, None, None
+    data22 = t22.load_or_gather_data()
+    lin_C = t22.fit_linear(data22["X_tr"], data22["Y_tr"])
+    with open(hp_path) as f:
+        opt_results = json.load(f)["results"]
+    _, t21_model, t22_opt_model, t21_lambda = t22.build_ensembles(
+        data22, opt_results, lin_C)
+    return t21_model, t22_opt_model, t21_lambda
+
+
+# =========================================================================
 # 7. PLOTS
 # =========================================================================
 def plot_pred_vs_true(Y_true, Y_pred, title, savepath):
@@ -592,6 +619,77 @@ def plot_mse_comparison(mse_lin, mse_nl_init, mse_nl_opt, savepath):
     plt.close(fig)
 
 
+def plot_rollout_horizon_comparison(model_entries, ICs, ic_labels,
+                                    sigmas_state, n_steps, dt, threshold,
+                                    savepath):
+    """Overlay normalised rollout error vs time for several models on a common
+    set of ICs -- the Task 2.2 rollout-horizon figure, plus the Task 2.3 model.
+
+    model_entries: list of dicts {label, model, rollout_fn, colour}. Each model
+    is rolled out with its own rollout_fn (Task 2.2 remaps theta in-loop, Task
+    2.3 does not), then compared against the shared true rollout. Returns
+    per-model lists of {IC, T_break_s, period_s, cycles_at_break}."""
+    n_ic = len(ICs)
+    n_cols = min(n_ic, 3)
+    n_rows = int(np.ceil(n_ic / n_cols))
+    fig, axes = plt.subplots(n_rows, n_cols,
+                             figsize=(5.0 * n_cols, 4.0 * n_rows),
+                             sharex=True, sharey=True)
+    axes_flat = axes.ravel() if n_ic > 1 else [axes]
+
+    summaries = {e["label"]: [] for e in model_entries}
+    tarr = np.arange(n_steps + 1) * dt
+
+    for r, X0 in enumerate(ICs):
+        ax = axes_flat[r]
+        tr_true = true_rollout(X0, n_steps)
+        period_s = _estimate_period(tr_true, dt)
+        for e in model_entries:
+            model = e["model"]
+            if model is None:
+                continue
+            tr_m = e["rollout_fn"](model, X0, n_steps)
+            diff = tr_m - tr_true
+            diff[:, 2] = _angle_wrap(diff[:, 2])
+            err = np.sqrt(np.sum((diff / sigmas_state) ** 2, axis=1))
+            above = err > threshold
+            t_break = (float(tarr[int(np.argmax(above))])
+                       if above.any() else float("inf"))
+            if np.isfinite(t_break) and np.isfinite(period_s) and period_s > 0:
+                cycles = t_break / period_s
+            else:
+                cycles = None
+            t_str = (f"T={t_break:.1f}s" if np.isfinite(t_break)
+                     else f"T>{tarr[-1]:.0f}s")
+            ax.semilogy(tarr, np.maximum(err, 1e-6), "-",
+                        color=e["colour"], lw=1.4,
+                        label=f"{e['label']} [{t_str}]")
+            if np.isfinite(t_break):
+                ax.axvline(t_break, color=e["colour"], ls=":", lw=1, alpha=0.6)
+            summaries[e["label"]].append({
+                "IC":              ic_labels[r].splitlines()[0],
+                "T_break_s":       t_break if np.isfinite(t_break) else None,
+                "period_s":        period_s if np.isfinite(period_s) else None,
+                "cycles_at_break": cycles,
+            })
+        ax.axhline(threshold, color="k", ls="--", lw=1, alpha=0.6)
+        ax.set_title(ic_labels[r], fontsize=9)
+        ax.set_xlabel("time / s")
+        ax.set_ylabel(r"$\|(X_m - X_t)/\sigma\|_2$")
+        ax.grid(True, which="both", alpha=0.4)
+        ax.legend(fontsize=7, loc="lower right")
+
+    for r in range(n_ic, n_rows * n_cols):
+        axes_flat[r].axis("off")
+
+    fig.suptitle(f"Rollout horizon comparison (threshold={threshold}): "
+                 f"t2.1 vs t2.2-opt vs t2.3")
+    fig.tight_layout()
+    fig.savefig(savepath, dpi=130)
+    plt.close(fig)
+    return summaries
+
+
 # =========================================================================
 # 8. MAIN
 # =========================================================================
@@ -684,6 +782,35 @@ def main():
                  "Rollout: full-rotation regime (theta_dot=10)",
                  fig_path("rollout_fullrotation"), dt)
 
+    # ---- 7b. ROLLOUT-HORIZON COMPARISON: t2.1 vs t2.2-opt vs t2.3 ----
+    # Two regimes side by side, overlaying t2.1 / t2.2-opt / t2.3 to compare
+    # how long each model tracks the true dynamics.
+    cmp_ICs = [
+        np.array([0.0, 0.0, 0.1, 3.0]),    # near upright + rapid spin
+        np.array([1.0, 1.0, -1.5, 0.0]),   # off-centre downswing
+    ]
+    cmp_IC_labels = [
+        "near upright + rapid spin\nX=[0, 0, 0.1, 3.0]",
+        "off-centre, downswing\nX=[1, 1, -1.5, 0]",
+    ]
+    cmp_steps = int(t22.CFG["rollout_steps"])   # match Task 2.2's horizon length
+    t21_model, t22_opt_model, t21_lambda = build_t22_models()
+    model_entries = []
+    if t21_model is not None:
+        model_entries.append({"label": "t2.1", "model": t21_model,
+                              "rollout_fn": t22.model_rollout, "colour": "tab:green"})
+    if t22_opt_model is not None:
+        model_entries.append({"label": "t2.2-opt", "model": t22_opt_model,
+                              "rollout_fn": t22.model_rollout, "colour": "tab:red"})
+    model_entries.append({"label": "t2.3", "model": nl_opt,
+                          "rollout_fn": model_rollout, "colour": "tab:purple"})
+    horizon_cmp = plot_rollout_horizon_comparison(
+        model_entries, cmp_ICs, cmp_IC_labels, sigmas_state,
+        cmp_steps, dt, CFG["horizon_threshold"],
+        fig_path("rollout_horizon_comparison"))
+    print(f"[fig] rollout-horizon comparison -> "
+          f"{fig_path('rollout_horizon_comparison').name}")
+
     # ---- 8. PLOT: MSE comparison bar chart ----
     plot_mse_comparison(mse_lin_va, mse_nl_init_va, mse_nl_opt_va,
                         fig_path("mse_comparison"))
@@ -740,6 +867,12 @@ def main():
             },
         },
         "sigmas_state_normalisation": sigmas_state.tolist(),
+        "rollout_horizon_comparison": {
+            "n_steps":   cmp_steps,
+            "threshold": CFG["horizon_threshold"],
+            "t21_lambda": t21_lambda,
+            "per_model": horizon_cmp,
+        },
     }
     with open(results_path, "w") as f:
         json.dump(summary, f, indent=2)
