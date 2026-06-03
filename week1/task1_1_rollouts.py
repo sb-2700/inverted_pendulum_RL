@@ -302,7 +302,7 @@ def plot_phase_global(fname,
     ax.set_xlabel(r"$\theta$ (rad, remapped to $[-\pi,\pi]$)")
     ax.set_ylabel(r"$\dot\theta$ (rad/s)")
     ax.grid(alpha=0.3)
-    ax.set_title(title, fontsize=11)
+    ax.set_title(title, fontsize=14)
 
     td_lib_label = ", ".join(f"{v:g}" for v in GLOBAL_LIB_THETADOTS)
     td_rot_label = ", ".join(f"{v:g}" for v in GLOBAL_ROT_THETADOTS)
@@ -317,7 +317,7 @@ def plot_phase_global(fname,
         Line2D([0], [0], color="black", ls=":",  lw=0.9,
                label=r"upright ($\theta=0$)"),
     ]
-    ax.legend(handles=handles, fontsize=8, loc="upper right")
+    ax.legend(handles=handles, fontsize=11, loc="upper right")
     fig.tight_layout()
     fig.savefig(FIG_DIR / fname, dpi=140)
     plt.close(fig)

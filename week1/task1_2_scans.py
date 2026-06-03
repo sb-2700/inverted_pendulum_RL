@@ -288,11 +288,12 @@ def plot_contour_pair(va, vb, a, b, dY, base_state, fname):
                 markeredgecolor="white", markeredgewidth=1.2,
                 zorder=5)
         cbar = fig.colorbar(tcf, ax=ax, pad=0.02, fraction=0.046)
-        cbar.set_label(OUTPUT_LABELS_DY[col])
+        cbar.set_label(OUTPUT_LABELS_DY[col], fontsize=15)
+        cbar.ax.tick_params(labelsize=11)
 
-        ax.set_xlabel(INPUT_LABELS[va])
-        ax.set_ylabel(INPUT_LABELS[vb])
-        ax.set_title(OUTPUT_LABELS_DY[col])
+        ax.set_xlabel(INPUT_LABELS[va], fontsize=15)
+        ax.set_ylabel(INPUT_LABELS[vb], fontsize=15)
+        ax.set_title(OUTPUT_LABELS_DY[col], fontsize=15)
         ax.grid(False)
 
     # The two frozen variables for this pair -- annotate the suptitle so
@@ -304,7 +305,8 @@ def plot_contour_pair(va, vb, a, b, dY, base_state, fname):
     fig.suptitle(
         rf"Task 1.2 -- $\Delta Y$ over ({INPUT_SHORT[va]}, "
         rf"{INPUT_SHORT[vb]});  frozen at {frozen_desc};  "
-        r"$\bigstar$ marks base-state slice."
+        r"$\bigstar$ marks base-state slice.",
+        fontsize=18,
     )
     fig.savefig(FIG_DIR / fname, dpi=150)
     plt.close(fig)

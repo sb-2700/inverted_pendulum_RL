@@ -7,7 +7,10 @@
       "Bash(python *)",
       "Bash(findstr task2 *)",
       "Bash(Get-ChildItem -Path \"C:\\\\Github\\\\inverted_pendulum_RL\" -Recurse -File -Name)",
-      "Bash(Sort-Object)"
+      "Bash(Sort-Object)",
+      "Bash(ls *)",
+      "Bash(TASK3_1_QUICK=1 python *)",
+      "Bash(TASK3_2_QUICK=1 python week3/task3_2.py)"
     ]
   }
 }
