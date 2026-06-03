@@ -1,0 +1,1713 @@
+{
+  "tag": "task3_2",
+  "quick": false,
+  "elapsed_total_s": 182.2427842617035,
+  "cfg": {
+    "T": 40,
+    "T_verify": 80,
+    "dt": 0.1,
+    "n_restarts": 8,
+    "maxiter": 200,
+    "ftol": 1e-10,
+    "gtol": 1e-07,
+    "p_bound": 100.0,
+    "sigma_grid": [
+      0.1,
+      0.18,
+      0.32,
+      0.56,
+      1.0,
+      1.78
+    ],
+    "n_holdout": 20,
+    "holdout_x": 0.5,
+    "holdout_xdot": 0.5,
+    "holdout_theta": 0.3,
+    "holdout_thetadot": 0.5,
+    "X0_up": [
+      0.0,
+      0.0,
+      0.2,
+      0.0
+    ],
+    "X0_down": [
+      0.0,
+      0.0,
+      3.141592653589793,
+      0.0
+    ],
+    "downward_max_force_check": [
+      40.0,
+      80.0
+    ],
+    "theta_settled": 0.05,
+    "n_gate": 200,
+    "gate_tol": 1e-06,
+    "seed": 0
+  },
+  "physics": {
+    "max_force": 20.0,
+    "sim_steps": 50,
+    "delta_time": 0.1,
+    "gravity": 9.8,
+    "cart_mass": 0.5,
+    "pole_mass": 0.5,
+    "pole_length": 0.5,
+    "mu_c": 0.001,
+    "mu_p": 0.001
+  },
+  "gating": {
+    "n": 200,
+    "tol": 1e-06,
+    "max_diff": 3.552713678800501e-15,
+    "passed": true
+  },
+  "loss_match_builtin_at_sigma_0p5": true,
+  "T": 40,
+  "T_verify": 80,
+  "dt": 0.1,
+  "X0_up": [
+    0.0,
+    0.0,
+    0.2,
+    0.0
+  ],
+  "X0_down": [
+    0.0,
+    0.0,
+    3.141592653589793,
+    0.0
+  ],
+  "sigma_l_final": [
+    2.67,
+    2.136,
+    1.246,
+    1.78
+  ],
+  "sigma_choice": "per-component refinement",
+  "sigma_sweep": [
+    {
+      "sigma": 0.1,
+      "p_opt": [
+        1.0861770189727462,
+        1.4383603783053667,
+        9.463638832482944,
+        -5.4659390743031135
+      ],
+      "loss_best": 39.978500708417194,
+      "spread_rel": 0.0005377713321370192,
+      "per_ic": [
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.238931200465522,
+          "peak_abs_theta": 4.3560147395259055,
+          "effort": 8906785.732137846,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.245946645597683,
+          "peak_abs_theta": 4.42185377360789,
+          "effort": 9235460.32555352,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.24467480777771,
+          "peak_abs_theta": 4.408303684141193,
+          "effort": 9176704.428157456,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.232171978695548,
+          "peak_abs_theta": 4.387842767981306,
+          "effort": 9307428.673637476,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.2572305727176305,
+          "peak_abs_theta": 4.383654800007646,
+          "effort": 8769006.685352467,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.243400328741613,
+          "peak_abs_theta": 4.339068694700138,
+          "effort": 9167229.133124711,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.30274643644186,
+          "peak_abs_theta": 4.516230350297003,
+          "effort": 8322912.300847083,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.233230333368739,
+          "peak_abs_theta": 4.362019408806392,
+          "effort": 9466475.705188334,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.229236133144715,
+          "peak_abs_theta": 4.401642773475759,
+          "effort": 9697416.423226032,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.241702538080969,
+          "peak_abs_theta": 4.333961651988955,
+          "effort": 9076836.359176833,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.2404921897445345,
+          "peak_abs_theta": 4.377653788237101,
+          "effort": 9120040.303018305,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.24462118247258,
+          "peak_abs_theta": 4.392080612396077,
+          "effort": 9145433.563935855,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.246955085913333,
+          "peak_abs_theta": 4.301794063229504,
+          "effort": 9024650.323926164,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.243997666925239,
+          "peak_abs_theta": 4.368700697438759,
+          "effort": 9014034.273613159,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.2294699211057445,
+          "peak_abs_theta": 4.405915466007864,
+          "effort": 9602047.8601887,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.244258901687241,
+          "peak_abs_theta": 4.309786457158147,
+          "effort": 9111716.84974478,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.224887278010996,
+          "peak_abs_theta": 4.443883941879005,
+          "effort": 9760914.565860068,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.2356977181491615,
+          "peak_abs_theta": 4.352775610557603,
+          "effort": 9381084.258088816,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.252283242133655,
+          "peak_abs_theta": 4.2823269677545515,
+          "effort": 7514645.889758873,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 4.236348853825321,
+          "peak_abs_theta": 4.376838511473839,
+          "effort": 9542769.46452598,
+          "stabilised": false
+        }
+      ],
+      "stab_frac": 0.0,
+      "mean_settle_time": NaN,
+      "median_ss_theta": 4.2425514334112915,
+      "median_peak_theta": 4.37724614985547,
+      "median_effort": 9156331.348530283
+    },
+    {
+      "sigma": 0.18,
+      "p_opt": [
+        17.325654750344327,
+        17.45819160299434,
+        52.904576051938,
+        9.712065707900722
+      ],
+      "loss_best": 3.7174512131828084,
+      "spread_rel": 9.760060510855444,
+      "per_ic": [
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 2.854250582183469e-07,
+          "peak_abs_theta": 0.20097090742316656,
+          "effort": 286.22711239181695,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 4.834739350828627e-06,
+          "peak_abs_theta": 0.23854036528982137,
+          "effort": 506.9825988003643,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.7483632778837183e-06,
+          "peak_abs_theta": 0.32508713089843744,
+          "effort": 618.1345238645272,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 2.295607071009563e-06,
+          "peak_abs_theta": 0.4337463161018897,
+          "effort": 875.5167433284996,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.8,
+          "settled": true,
+          "ss_abs_theta": 2.4907090287101396e-06,
+          "peak_abs_theta": 0.4420560287790034,
+          "effort": 1403.0381050844276,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 3.960953576942088e-06,
+          "peak_abs_theta": 0.3363956964611006,
+          "effort": 796.7844925763029,
+          "stabilised": true
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 23.297354723982743,
+          "peak_abs_theta": 26.08682272529091,
+          "effort": 3090785408.6046357,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 10.493624450626097,
+          "peak_abs_theta": 13.428720825785557,
+          "effort": 2775092069.934222,
+          "stabilised": false
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 16.506724162951333,
+          "peak_abs_theta": 19.76255685455802,
+          "effort": 2567596969.2535586,
+          "stabilised": false
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 6.739034582445188e-07,
+          "peak_abs_theta": 0.10225834479022414,
+          "effort": 159.13819763560755,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 2.3723127460942472e-06,
+          "peak_abs_theta": 0.14540001274166464,
+          "effort": 176.94371482772917,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.12718992284677e-06,
+          "peak_abs_theta": 0.3347032568443227,
+          "effort": 565.8411550650932,
+          "stabilised": true
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 87.40940097694485,
+          "peak_abs_theta": 90.92895834064024,
+          "effort": 5143384104.309158,
+          "stabilised": false
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 1.0306461263918622e-06,
+          "peak_abs_theta": 0.272039135021929,
+          "effort": 440.93066423342225,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 3.8318850627823435e-07,
+          "peak_abs_theta": 0.03987609427455098,
+          "effort": 58.61906703343896,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 5.403263256871416e-07,
+          "peak_abs_theta": 0.26566028097565925,
+          "effort": 485.00659127419385,
+          "stabilised": true
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 78.98475037773117,
+          "peak_abs_theta": 82.68438005235714,
+          "effort": 4157957839.9856505,
+          "stabilised": false
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 2.1062499522741225e-06,
+          "peak_abs_theta": 0.0980716946817684,
+          "effort": 55.801803052466305,
+          "stabilised": true
+        },
+        {
+          "settle_time": NaN,
+          "settled": false,
+          "ss_abs_theta": 23.334900343257928,
+          "peak_abs_theta": 26.14540471386257,
+          "effort": 3104684042.536598,
+          "stabilised": false
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 4.658564593811284e-06,
+          "peak_abs_theta": 0.04711611388163177,
+          "effort": 31.568460079966886,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 0.7,
+      "mean_settle_time": 0.4,
+      "median_ss_theta": 2.619536153296929e-06,
+      "median_peak_theta": 0.3298951938713801,
+      "median_effort": 591.9878394648101
+    },
+    {
+      "sigma": 0.32,
+      "p_opt": [
+        5.606052811257634,
+        7.066518003494288,
+        39.963901076806955,
+        6.081815770884379
+      ],
+      "loss_best": 2.422018085506484,
+      "spread_rel": 15.5151533001405,
+      "per_ic": [
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.5705822222385775e-07,
+          "peak_abs_theta": 0.09264265407958977,
+          "effort": 86.31287765811184,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 5.236761022301342e-07,
+          "peak_abs_theta": 0.07740178868562896,
+          "effort": 150.53390026991198,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 3.14633310379751e-07,
+          "peak_abs_theta": 0.11477831758483661,
+          "effort": 47.162216873146875,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.959874986184948e-07,
+          "peak_abs_theta": 0.1860999030521533,
+          "effort": 11.069980758952935,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.6879094812299317e-07,
+          "peak_abs_theta": 0.15723947200034616,
+          "effort": 30.29138467914892,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 4.798252494242135e-07,
+          "peak_abs_theta": 0.11182927796333988,
+          "effort": 104.61192804372105,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 6.399640402000941e-07,
+          "peak_abs_theta": 0.20697087472012357,
+          "effort": 319.22527754433355,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 3.8745552570459633e-07,
+          "peak_abs_theta": 0.16257576717604272,
+          "effort": 67.63244761684044,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 3.564533953676676e-07,
+          "peak_abs_theta": 0.1588119165677914,
+          "effort": 92.61327053245776,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 8.05819235883045e-08,
+          "peak_abs_theta": 0.07952442931006988,
+          "effort": 85.82742365201028,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 2.5341880836935064e-07,
+          "peak_abs_theta": 0.05366453501428895,
+          "effort": 32.073168980222164,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 2.540461316996749e-07,
+          "peak_abs_theta": 0.12269217228608861,
+          "effort": 24.973258404251826,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 4.5787174326766604e-07,
+          "peak_abs_theta": 0.25100928250978805,
+          "effort": 358.8403378270886,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.6249626789111844e-07,
+          "peak_abs_theta": 0.10857392927776935,
+          "effort": 57.68340608935384,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 3.5788749239234324e-08,
+          "peak_abs_theta": 0.046519516809431255,
+          "effort": 40.430962072303785,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.665506055284333e-07,
+          "peak_abs_theta": 0.11262874928676231,
+          "effort": 135.81316217587914,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 6.181328860431146e-07,
+          "peak_abs_theta": 0.17967684274724408,
+          "effort": 260.4789572446556,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 3.508475310337563e-07,
+          "peak_abs_theta": 0.06080236203667748,
+          "effort": 20.681037919681366,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 4.006896347223903e-07,
+          "peak_abs_theta": 0.22074505395687816,
+          "effort": 358.8775671967551,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 6.189536790653408e-07,
+          "peak_abs_theta": 0.027739830120321544,
+          "effort": 1.6623156333546567,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 1.0,
+      "mean_settle_time": 0.3550000000000001,
+      "median_ss_theta": 3.327404207067537e-07,
+      "median_peak_theta": 0.11370353343579946,
+      "median_effort": 76.72993563442536
+    },
+    {
+      "sigma": 0.56,
+      "p_opt": [
+        5.495121496569312,
+        6.945410087886633,
+        39.84459524407247,
+        6.036608603443621
+      ],
+      "loss_best": 1.4826605676424123,
+      "spread_rel": 25.827989863205403,
+      "per_ic": [
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.4679288408779707e-07,
+          "peak_abs_theta": 0.09144092644213199,
+          "effort": 85.08843696194894,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 1.322571144124628e-06,
+          "peak_abs_theta": 0.07811628093824288,
+          "effort": 148.9885038430574,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 9.727301755742446e-07,
+          "peak_abs_theta": 0.1128759890124618,
+          "effort": 45.52204399976809,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 9.830446272179724e-07,
+          "peak_abs_theta": 0.1842407769541764,
+          "effort": 10.55682461301212,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 8.863697055276919e-07,
+          "peak_abs_theta": 0.1545791438005999,
+          "effort": 28.604497515782512,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 1.2678389583099207e-06,
+          "peak_abs_theta": 0.10999631695853013,
+          "effort": 102.49670410120066,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 1.9786070251582655e-06,
+          "peak_abs_theta": 0.20358891946556815,
+          "effort": 313.4595500190583,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.2210989566219749e-06,
+          "peak_abs_theta": 0.15973834045581725,
+          "effort": 64.94839255603114,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.1370003650832799e-06,
+          "peak_abs_theta": 0.1560965474510271,
+          "effort": 89.65067341501053,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 2.3147292134001951e-07,
+          "peak_abs_theta": 0.0797836041224506,
+          "effort": 85.42416825816335,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 6.644689500900006e-07,
+          "peak_abs_theta": 0.052858332098189395,
+          "effort": 31.428411584708154,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 8.441710337206971e-07,
+          "peak_abs_theta": 0.12065960165384366,
+          "effort": 23.696131017536956,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 1.5267328502018724e-06,
+          "peak_abs_theta": 0.24709640138829664,
+          "effort": 351.5720097805157,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 5.055878868315398e-07,
+          "peak_abs_theta": 0.10694698581897755,
+          "effort": 56.20389276928741,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 1.1692536339658611e-07,
+          "peak_abs_theta": 0.046651247495605556,
+          "effort": 40.26161371342823,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 3.883445525429394e-07,
+          "peak_abs_theta": 0.11109170130270828,
+          "effort": 134.05170158213298,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 1.8300277384636424e-06,
+          "peak_abs_theta": 0.1766826743920628,
+          "effort": 255.79026493515852,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 4.00007279991452e-07,
+          "peak_abs_theta": 0.06014169404377227,
+          "effort": 20.318796054721705,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 1.2738053615350498e-06,
+          "peak_abs_theta": 0.2177479019934723,
+          "effort": 353.2873330230572,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 1.079629042790042e-06,
+          "peak_abs_theta": 0.027582201775422813,
+          "effort": 1.6411694578426719,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 1.0,
+      "mean_settle_time": 0.36000000000000004,
+      "median_ss_theta": 9.778874013961085e-07,
+      "median_peak_theta": 0.11198384515758504,
+      "median_effort": 75.01841475899005
+    },
+    {
+      "sigma": 1.0,
+      "p_opt": [
+        5.190456049926274,
+        6.625474211087349,
+        39.32781618397274,
+        5.913925503815717
+      ],
+      "loss_best": 1.1426674490076776,
+      "spread_rel": 33.09797361846667,
+      "per_ic": [
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 6.922164652006816e-07,
+          "peak_abs_theta": 0.08787823217246225,
+          "effort": 80.66187224380688,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 3.0245654419585488e-06,
+          "peak_abs_theta": 0.08101821700960918,
+          "effort": 142.54133578502515,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 2.415385008038299e-06,
+          "peak_abs_theta": 0.1080556379209258,
+          "effort": 41.05482278841507,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.66033481958336e-06,
+          "peak_abs_theta": 0.18024425197536337,
+          "effort": 9.66057860065073,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.4630299743218078e-06,
+          "peak_abs_theta": 0.14842719229188156,
+          "effort": 24.665728072373465,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.30000000000000004,
+          "settled": true,
+          "ss_abs_theta": 2.964726379360743e-06,
+          "peak_abs_theta": 0.10452290440246415,
+          "effort": 95.34318988423803,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 4.924455728310682e-06,
+          "peak_abs_theta": 0.19350714381738945,
+          "effort": 294.8207676906654,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 3.0905307802047212e-06,
+          "peak_abs_theta": 0.1525265588508381,
+          "effort": 57.67759406420577,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.90609055487373e-06,
+          "peak_abs_theta": 0.1491967623830934,
+          "effort": 81.64113748277408,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 7.183275358615206e-07,
+          "peak_abs_theta": 0.08142441891286992,
+          "effort": 82.6070608640566,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 1.5457484287012787e-06,
+          "peak_abs_theta": 0.0504517493320293,
+          "effort": 29.177919390028027,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 2.2205913803330293e-06,
+          "peak_abs_theta": 0.11587355380814261,
+          "effort": 20.612083434500093,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 4.142739135186995e-06,
+          "peak_abs_theta": 0.23558526998313087,
+          "effort": 328.5610362911286,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 1.500316449307303e-06,
+          "peak_abs_theta": 0.10263474880167617,
+          "effort": 51.7491268705113,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 3.3045039701993673e-07,
+          "peak_abs_theta": 0.04753401543736905,
+          "effort": 39.16228288216351,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 1.3411100042685245e-06,
+          "peak_abs_theta": 0.1062359633815198,
+          "effort": 127.29244933878489,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 4.467329466510766e-06,
+          "peak_abs_theta": 0.16785289988225655,
+          "effort": 240.75517251950708,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 4.360272292761168e-07,
+          "peak_abs_theta": 0.05843805335012468,
+          "effort": 19.07773005274411,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 3.732853515346038e-06,
+          "peak_abs_theta": 0.21078211484615816,
+          "effort": 335.15000427604315,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 1.993947927106747e-06,
+          "peak_abs_theta": 0.02712950080085034,
+          "effort": 1.5101050620574332,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 1.0,
+      "mean_settle_time": 0.375,
+      "median_ss_theta": 2.4392074911800534e-06,
+      "median_peak_theta": 0.10714580065122281,
+      "median_effort": 69.16973315400632
+    },
+    {
+      "sigma": 1.78,
+      "p_opt": [
+        1.833674561316178,
+        2.930717008547237,
+        24.495829764142197,
+        4.2259865901316465
+      ],
+      "loss_best": 0.6206125592108169,
+      "spread_rel": 57.459172178013155,
+      "per_ic": [
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 1.9465610372740456e-05,
+          "peak_abs_theta": 0.07395877210909775,
+          "effort": 18.56540518847519,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 4.7543249864504143e-05,
+          "peak_abs_theta": 0.15927244741628174,
+          "effort": 38.51342976191876,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 3.052800987716313e-05,
+          "peak_abs_theta": 0.062483048918436666,
+          "effort": 7.484893396053158,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.3023064509110045e-05,
+          "peak_abs_theta": 0.17763814691188545,
+          "effort": 9.438379778928116,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 2.7871122718099555e-05,
+          "peak_abs_theta": 0.10985552524855537,
+          "effort": 7.378790221191118,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 4.294082409400157e-05,
+          "peak_abs_theta": 0.0738239112248248,
+          "effort": 14.814183789338498,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.9,
+          "settled": true,
+          "ss_abs_theta": 7.468901099188105e-05,
+          "peak_abs_theta": 0.14363553571092752,
+          "effort": 73.73132316198827,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 3.988605127364942e-05,
+          "peak_abs_theta": 0.08947527627778912,
+          "effort": 8.24101062386687,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 3.81289720599635e-05,
+          "peak_abs_theta": 0.08686331037408418,
+          "effort": 18.16105512811975,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 2.149715212938905e-05,
+          "peak_abs_theta": 0.14438354187583516,
+          "effort": 20.501567347900522,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 2.250161366270417e-05,
+          "peak_abs_theta": 0.042904817308996014,
+          "effort": 4.077287996066312,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 2.5362770852677424e-05,
+          "peak_abs_theta": 0.08119818873468786,
+          "effort": 4.960528356282154,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.9,
+          "settled": true,
+          "ss_abs_theta": 6.916847189669407e-05,
+          "peak_abs_theta": 0.16315464285342599,
+          "effort": 73.5253364315723,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 2.4091830731682012e-05,
+          "peak_abs_theta": 0.06769204367559002,
+          "effort": 8.99196443685001,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 1.0913616390382158e-05,
+          "peak_abs_theta": 0.0829729745741908,
+          "effort": 13.672013595131657,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.8,
+          "settled": true,
+          "ss_abs_theta": 3.0444906473260977e-05,
+          "peak_abs_theta": 0.11605738489706958,
+          "effort": 27.891821568634715,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.8,
+          "settled": true,
+          "ss_abs_theta": 6.603731809210899e-05,
+          "peak_abs_theta": 0.11765993313245719,
+          "effort": 63.27184352470764,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 2.3490281974461818e-06,
+          "peak_abs_theta": 0.05414167529085318,
+          "effort": 3.9009056961362196,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.0,
+          "settled": true,
+          "ss_abs_theta": 6.559246533838163e-05,
+          "peak_abs_theta": 0.17324678473321184,
+          "effort": 99.41969019310568,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 2.144311585958942e-05,
+          "peak_abs_theta": 0.03659971137512557,
+          "effort": 0.8729912998908276,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 1.0,
+      "mean_settle_time": 0.5750000000000001,
+      "median_ss_theta": 2.9158014595680266e-05,
+      "median_peak_theta": 0.08816929332593665,
+      "median_effort": 14.243098692235078
+    }
+  ],
+  "sigma_refinement": {
+    "sigma_l": [
+      2.67,
+      2.136,
+      1.246,
+      1.78
+    ],
+    "p_opt": [
+      1.1626285192728092,
+      2.336278363034612,
+      22.43819102985059,
+      3.937291468956247
+    ],
+    "loss_best": 0.5205841373699694,
+    "mets": {
+      "per_ic": [
+        {
+          "settle_time": 0.8,
+          "settled": true,
+          "ss_abs_theta": 9.119860501803226e-05,
+          "peak_abs_theta": 0.08229472834792967,
+          "effort": 14.88201355946729,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 0.0002159844238820573,
+          "peak_abs_theta": 0.17221206999883382,
+          "effort": 30.803310272306952,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 0.00013404666612552824,
+          "peak_abs_theta": 0.05121986875545506,
+          "effort": 4.690337291269282,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 9.286325381708257e-05,
+          "peak_abs_theta": 0.17454417524886484,
+          "effort": 8.830345285655664,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.0001191290195547258,
+          "peak_abs_theta": 0.0972569798153263,
+          "effort": 5.483129965170485,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 0.0001925906070927418,
+          "peak_abs_theta": 0.08567151111994221,
+          "effort": 9.801569218237045,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.0,
+          "settled": true,
+          "ss_abs_theta": 0.00033553782850476816,
+          "peak_abs_theta": 0.16273452855241693,
+          "effort": 54.82652007499702,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.00017506672902387006,
+          "peak_abs_theta": 0.07424826846343151,
+          "effort": 4.962300538476632,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.00016812448725379538,
+          "peak_abs_theta": 0.07302151814839816,
+          "effort": 12.431525644809929,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 0.000102467931993735,
+          "peak_abs_theta": 0.15291503987656363,
+          "effort": 17.207378886664724,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 0.00010122613356245932,
+          "peak_abs_theta": 0.04934024016609364,
+          "effort": 2.6876589042571872,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 0.00010904758922465885,
+          "peak_abs_theta": 0.06971225834813764,
+          "effort": 3.2833740063855332,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.0,
+          "settled": true,
+          "ss_abs_theta": 0.0003131541114285201,
+          "peak_abs_theta": 0.15024860222025088,
+          "effort": 54.03095546692464,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.00010823242615193595,
+          "peak_abs_theta": 0.05972761003523205,
+          "effort": 6.298917793077202,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 5.2805340019606695e-05,
+          "peak_abs_theta": 0.08804646594409922,
+          "effort": 11.98181498844238,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.9,
+          "settled": true,
+          "ss_abs_theta": 0.00014126099582424334,
+          "peak_abs_theta": 0.12724542747944442,
+          "effort": 21.942155053795272,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.9,
+          "settled": true,
+          "ss_abs_theta": 0.0002960938388305539,
+          "peak_abs_theta": 0.13482679305821746,
+          "effort": 47.68205994475411,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 1.3419513361688952e-05,
+          "peak_abs_theta": 0.05324535964394257,
+          "effort": 3.371150944266994,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.1,
+          "settled": true,
+          "ss_abs_theta": 0.00029878395533562403,
+          "peak_abs_theta": 0.19139449760579896,
+          "effort": 78.5870227573927,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 9.418206744782304e-05,
+          "peak_abs_theta": 0.040297647461010784,
+          "effort": 1.2271942514692635,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 1.0,
+      "mean_settle_time": 0.545,
+      "median_ss_theta": 0.000126587842840127,
+      "median_peak_theta": 0.08685898853202072,
+      "median_effort": 10.891692103339713
+    },
+    "kept": true
+  },
+  "experiment_A_upright": {
+    "p_opt": [
+      1.1626282244975459,
+      2.336278487593305,
+      22.438191988188063,
+      3.937291708620692
+    ],
+    "loss_best": 0.520584137369966,
+    "restart_loss_min": 0.520584137369966,
+    "restart_loss_max": 36.75507403627627,
+    "restart_spread_rel": 69.60352284640469,
+    "final_abs_theta": 8.494695490838772e-05,
+    "max_abs_force": 4.4138114244771325,
+    "force_saturation_frac": 0.0,
+    "holdout_metrics": {
+      "per_ic": [
+        {
+          "settle_time": 0.8,
+          "settled": true,
+          "ss_abs_theta": 9.119872831847739e-05,
+          "peak_abs_theta": 0.08229472392910515,
+          "effort": 14.882014646537367,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 0.00021598473059054936,
+          "peak_abs_theta": 0.17221206790330704,
+          "effort": 30.803309931418763,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.4,
+          "settled": true,
+          "ss_abs_theta": 0.00013404686204511565,
+          "peak_abs_theta": 0.051219859123444095,
+          "effort": 4.690336664495689,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 9.286339792216685e-05,
+          "peak_abs_theta": 0.1745441718558046,
+          "effort": 8.830344523476725,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.00011912919648346618,
+          "peak_abs_theta": 0.09725697405818559,
+          "effort": 5.48312900273417,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 0.00019259088542733242,
+          "peak_abs_theta": 0.08567151189896403,
+          "effort": 9.801568089106949,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.0,
+          "settled": true,
+          "ss_abs_theta": 0.0003355383085029518,
+          "peak_abs_theta": 0.1627345260019535,
+          "effort": 54.82651760792762,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.0001750669864924948,
+          "peak_abs_theta": 0.0742482561647739,
+          "effort": 4.962298975149169,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.7000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.0001681247311743742,
+          "peak_abs_theta": 0.07302150634822141,
+          "effort": 12.431525267286775,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.2,
+          "settled": true,
+          "ss_abs_theta": 0.000102468070815445,
+          "peak_abs_theta": 0.152915036190211,
+          "effort": 17.207379517225846,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 0.00010122627979074841,
+          "peak_abs_theta": 0.04934024064622058,
+          "effort": 2.6876586031372023,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.5,
+          "settled": true,
+          "ss_abs_theta": 0.00010904775055083057,
+          "peak_abs_theta": 0.0697122534581962,
+          "effort": 3.283373356235801,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.0,
+          "settled": true,
+          "ss_abs_theta": 0.00031315455784095047,
+          "peak_abs_theta": 0.1502485988318526,
+          "effort": 54.0309531620981,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 0.00010823258012358237,
+          "peak_abs_theta": 0.05972760331129644,
+          "effort": 6.2989175947218765,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.1,
+          "settled": true,
+          "ss_abs_theta": 5.2805409860516017e-05,
+          "peak_abs_theta": 0.0880464618457212,
+          "effort": 11.98181616441447,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.9,
+          "settled": true,
+          "ss_abs_theta": 0.00014126119068650164,
+          "peak_abs_theta": 0.12724542341804324,
+          "effort": 21.942155659636057,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.9,
+          "settled": true,
+          "ss_abs_theta": 0.0002960942625172035,
+          "peak_abs_theta": 0.13482679022793148,
+          "effort": 47.6820589438081,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.6000000000000001,
+          "settled": true,
+          "ss_abs_theta": 1.3419525802904253e-05,
+          "peak_abs_theta": 0.05324535982421372,
+          "effort": 3.3711513193309344,
+          "stabilised": true
+        },
+        {
+          "settle_time": 1.1,
+          "settled": true,
+          "ss_abs_theta": 0.00029878437572705837,
+          "peak_abs_theta": 0.19139449145393486,
+          "effort": 78.58702253248963,
+          "stabilised": true
+        },
+        {
+          "settle_time": 0.0,
+          "settled": true,
+          "ss_abs_theta": 9.418221150349561e-05,
+          "peak_abs_theta": 0.04029765781762125,
+          "effort": 1.2271949887227862,
+          "stabilised": true
+        }
+      ],
+      "stab_frac": 1.0,
+      "mean_settle_time": 0.545,
+      "median_ss_theta": 0.00012658802926429093,
+      "median_peak_theta": 0.08685898687234261,
+      "median_effort": 10.89169212676071
+    },
+    "per_ic_final_loss": [
+      0.4317476705865557,
+      0.749701945232773,
+      0.22576467952712165,
+      0.2409653776084245,
+      0.20787406085603188,
+      0.5135659915250007,
+      1.6240317097022325,
+      0.37556643187216077,
+      0.39289037622113077,
+      0.46033156122782837,
+      0.14853747913678395,
+      0.15615320814459166,
+      1.747880275488662,
+      0.25596454930460943,
+      0.15185352417066678,
+      0.6933904750792081,
+      1.24060882880784,
+      0.21036487277619198,
+      1.8517405295222769,
+      0.19928120444918274
+    ],
+    "holdout_ICs": [
+      [
+        0.12509546660466697,
+        -0.28469130176440105,
+        -0.13944041726172873,
+        0.10505625382985129
+      ],
+      [
+        0.3972138009695755,
+        -0.33978796614215545,
+        0.22819929238849718,
+        0.1379965807883322
+      ],
+      [
+        0.2756856902451935,
+        0.11253960427303078,
+        0.005874485921053885,
+        0.1764502438127883
+      ],
+      [
+        -0.27479281000940814,
+        -0.45605799203861663,
+        0.20829014781952154,
+        -0.3492119808316313
+      ],
+      [
+        -0.19983371508877457,
+        -0.46431972122640386,
+        0.08383030016551574,
+        -0.059686532811812465
+      ],
+      [
+        0.3735534453962619,
+        0.014888820271370284,
+        0.1450625684171143,
+        -0.26043603817047667
+      ],
+      [
+        -0.4947346954344253,
+        -0.0337939746747109,
+        -0.2451026369621726,
+        -0.09750170189601837
+      ],
+      [
+        0.3212284183827663,
+        0.41716777319285225,
+        0.02468629282589324,
+        -0.4032959060682544
+      ],
+      [
+        0.2970694287520462,
+        0.12922625449101044,
+        0.004663341780209995,
+        0.4678280510488214
+      ],
+      [
+        -0.032065047156279225,
+        0.014117646599513867,
+        0.2228036260157284,
+        -0.28499596264411997
+      ],
+      [
+        -0.19696757318068647,
+        -0.003126564606495741,
+        -0.08324156459150545,
+        0.17176516261128494
+      ],
+      [
+        -0.22157438789922668,
+        -0.25248507797266917,
+        0.05891044032432785,
+        -0.1995799185209297
+      ],
+      [
+        -0.2451304123458754,
+        -0.48820597445749414,
+        -0.2644490145926978,
+        0.37407702614950444
+      ],
+      [
+        -0.05492369411735343,
+        -0.30759785601468936,
+        -0.06742091933356278,
+        0.1622147383384538
+      ],
+      [
+        0.0045482589579532995,
+        0.19203212088183919,
+        -0.10617819224507599,
+        -0.3683841841916943
+      ],
+      [
+        0.053497352074492466,
+        -0.2993932760130048,
+        -0.20988016255772887,
+        0.3450743208745529
+      ],
+      [
+        0.4955002834343927,
+        -0.1304636893977933,
+        0.18980286229144538,
+        0.44494817114497953
+      ],
+      [
+        0.29266191921375306,
+        -0.49626575794792405,
+        -0.07233229706981253,
+        0.4039167881959268
+      ],
+      [
+        0.12217922944116266,
+        0.33004772980174557,
+        0.287248730646733,
+        0.06971914785927724
+      ],
+      [
+        0.4889601476818849,
+        -0.34553891893856015,
+        0.053995015806366176,
+        -0.3545400462390731
+      ]
+    ]
+  },
+  "experiment_B_downward": {
+    "p_opt": [
+      -1.2222864168367051,
+      -3.0802776813490835,
+      3.8703041906105398,
+      1.4632102799180047
+    ],
+    "loss_best": 18.181152257288062,
+    "restart_loss_min": 18.181152257288062,
+    "restart_loss_max": 39.99999967521508,
+    "restart_spread_rel": 1.2000805619556238,
+    "final_abs_theta": 27.932495032386193,
+    "grad_norm_at_p0_upright": 32.96092048598393,
+    "grad_norm_at_p0_downward": 1.0742807092856512,
+    "grad_norm_ratio_down_over_up": 0.03259255789723685,
+    "max_force_rescue_check": [
+      {
+        "max_force": 40.0,
+        "p_opt": [
+          -4.610644209856456,
+          -1.5206110125288053,
+          5.621199948011361,
+          3.2816636956558036
+        ],
+        "loss_best": 19.913951312063574,
+        "final_abs_theta": 32.65557907205991,
+        "rescued": false
+      },
+      {
+        "max_force": 80.0,
+        "p_opt": [
+          -3.32773910592754,
+          -1.7209829734899402,
+          3.992301159044453,
+          2.0835089633003454
+        ],
+        "loss_best": 18.776179740179522,
+        "final_abs_theta": 30.320380688384343,
+        "rescued": false
+      }
+    ]
+  }
+}
